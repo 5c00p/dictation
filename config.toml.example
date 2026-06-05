@@ -1,0 +1,48 @@
+# VoiceType configuration. Copy to config.toml (done automatically on first run)
+# and edit. All keys are optional — omitted keys fall back to the defaults below.
+
+[stt]
+provider = "local_whisper"     # local_whisper | openai | yandex
+model = "small"                # tiny|base|small|medium|large-v3|turbo
+                               # NOTE: no CUDA GPU on this machine -> CPU int8.
+                               # "small" is fast on CPU; "medium"/"turbo" are
+                               # more accurate but slower, "large-v3" slowest.
+device = "auto"                # auto|cuda|cpu
+compute_type = "auto"          # auto|float16|int8|float32 (auto -> int8 on CPU)
+default_language = "ru"        # ru|be|auto
+initial_prompt = "doTERRA, DigestZen, TerraShield, PB Restore, Deep Blue, FastAPI, asyncpg, Redmine, Nextcloud"
+beam_size = 1                  # 1 = fastest (greedy); raise to 5 for accuracy
+cpu_threads = 0                # 0 = use all logical CPU cores
+
+[hotkeys]
+push_to_talk = "ctrl+alt"      # hold to talk
+toggle = "ctrl+d"              # press to start/stop continuous dictation
+switch_language = "ctrl+alt+l" # cycle RU <-> BE
+
+[audio]
+input_device = ""              # empty = system default; substring match otherwise
+sample_rate = 16000
+
+[inject]
+method = "clipboard"           # clipboard | unicode
+restore_clipboard = true
+paste_pre_delay = 0.05
+paste_post_delay = 0.12
+
+[vad]
+threshold = 0.5                # 0..1, higher = stricter speech detection
+min_silence_ms = 700           # pause length that ends a chunk
+min_speech_ms = 250
+speech_pad_ms = 200
+
+[postprocess]
+capitalize_first = true
+voice_punctuation = true       # "точка" -> "." , "новая строка" -> newline
+numbers_to_digits = false
+raw_mode = false               # true = no postprocessing (dictate code/logs)
+
+[app]
+autostart = false
+sound_feedback = true
+log_level = "INFO"
+log_transcripts = false        # privacy: never log recognized text by default

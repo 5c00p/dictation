@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+.uv/
+.pytest_cache/
+
+# Local user config (machine-specific paths, secrets) — not the example
+config.toml
+.claude/settings.local.json
+
+*.log
+run.out
+tests/_sample.wav
+
+# uv.lock IS committed for reproducible installs (intentionally not ignored)
